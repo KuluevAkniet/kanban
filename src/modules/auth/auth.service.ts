@@ -30,14 +30,13 @@ export class AuthService {
   }
 
   async login(dto: LoginDto){
-     const user = await this.userService.findByLogin(dto.login)
+    const user = await this.userService.findByLogin(dto.login)
     if (!user || !bcrypt.compareSync(dto.password, user.password)) {
       throw new BadRequestException({
         success: false,
         error: 'Неверный логин или пароль',
       });
     }
-
     if(user){
       const token = await this.generateToken(user)
       await this.updateHash(user.id, token.refresh)

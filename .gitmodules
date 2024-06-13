@@ -1,0 +1,3 @@
+[submodule "kanban2"]
+	path = kanban2
+	url = https://gitlab.com/Akni/kanban2.git
